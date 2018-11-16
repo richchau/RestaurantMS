@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateOrderViewController">
+   <children>
+      <HBox prefHeight="700.0" prefWidth="1000.0">
+         <children>
+            <VBox prefHeight="415.0" prefWidth="574.0" spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Label text="Table#: ">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="26.0" prefWidth="57.0" />
+                        <Label text="Customer's Name:">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="26.0" prefWidth="126.0" promptText="First Name" />
+                        <TextField prefHeight="26.0" prefWidth="131.0" promptText="Last_Name" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <ToggleButton fx:id="appetizersToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" text="Appetizers" />
+                        <ToggleButton fx:id="mainEntreesToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" text="Main Entrees" />
+                        <ToggleButton fx:id="dessertsToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" text="Desserts" />
+                        <ToggleButton fx:id="drinksToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" text="Drinks" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="menuItemTableView" prefHeight="285.0" prefWidth="418.0">
+                    <columns>
+                      <TableColumn fx:id="menuItemNameColumn" prefWidth="261.0666809082031" text="Item Name" />
+                      <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="143.7332763671875" text="Price" />
+                        <TableColumn fx:id="actionColumn" prefWidth="75.0" text="Action" />
+                    </columns>
+                  </TableView>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="700.0" prefWidth="426.0">
+               <children>
+                  <TableView prefHeight="383.0" prefWidth="406.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="Items" />
+                      <TableColumn prefWidth="75.0" text="Quantity" />
+                        <TableColumn prefWidth="75.0" text="Price" />
+                    </columns>
+                  </TableView>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
