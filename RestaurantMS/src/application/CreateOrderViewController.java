@@ -21,6 +21,7 @@ public class CreateOrderViewController implements Initializable{
 	private DBClass objDbClass;
 	private Connection connection;
 	private ObservableList<MenuItem> menuItems;
+	private ObservableList<OrderLine> orderLineItems;
 	
 	//Items to configure the table view of menu items
 	@FXML private TableView<MenuItem> menuItemTableView;
@@ -35,6 +36,12 @@ public class CreateOrderViewController implements Initializable{
 	@FXML private ToggleButton drinksToggleButton;
 	private ToggleGroup itemTypeToggleGroup;
 	
+	//Items to configure the table view of order line
+	@FXML private TableView<OrderLine> orderLineTableView;
+	@FXML private TableColumn<OrderLine, String> menuItemOrderLineNameColumn;
+	@FXML private TableColumn<OrderLine, Integer> quantityColumn;
+	@FXML private TableColumn<OrderLine, Double> computedPriceColumn;
+	@FXML private TableColumn<OrderLine, Button> orderLineActionColumn;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -44,8 +51,11 @@ public class CreateOrderViewController implements Initializable{
 		priceColumn.setCellValueFactory(new PropertyValueFactory<MenuItem, Double>("price"));
 		
 		actionColumn.setCellFactory(ActionButtonTableCell.<MenuItem>forTableColumn("Add", (MenuItem p) -> {
-		    return p;
+			addToOrderLine(p);
+		    updateOrderLineTableView();
+			return p;
 		}));
+		
 				
 		//Initialize toggle button group
 		itemTypeToggleGroup = new ToggleGroup();
@@ -60,6 +70,20 @@ public class CreateOrderViewController implements Initializable{
 		    if (newVal == null)
 		        oldVal.setSelected(true);
 		});
+		
+		
+		//Initialize columns in order line table view
+		menuItemOrderLineNameColumn.setCellValueFactory(new PropertyValueFactory<OrderLine, String>("menuItem"));
+		quantityColumn.setCellValueFactory(new PropertyValueFactory<OrderLine, Integer>("quantity"));
+		computedPriceColumn.setCellValueFactory(new PropertyValueFactory<OrderLine, Double>("computedPrice"));
+		orderLineItems = FXCollections.observableArrayList();
+		
+		orderLineActionColumn.setCellFactory(ActionButtonTableCell.<OrderLine>forTableColumn("X", (OrderLine p) -> {
+			orderLineItems.remove(p);
+			updateOrderLineTableView();
+			return p;
+		}));
+		
 		
 		//Initialize database connection
 		objDbClass = new DBClass();
@@ -116,11 +140,34 @@ public class CreateOrderViewController implements Initializable{
 			}
 			menuItemTableView.setItems(menuItems);
 			
-	
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
+	
+	/**
+	 * This method adds to the order line. Creates a new entry for new items, increments quantity for items
+	 * that already exists
+	 */
+	public void addToOrderLine(MenuItem item){
+		for(OrderLine orderLine: orderLineItems){
+			if (item.getItemName().equals(orderLine.getMenuItem())){
+				orderLine.addQuantity();
+				return;
+			}
+		}
+		
+		orderLineItems.add(new OrderLine(item));
+	}
+	
+	/**
+	 * Updates the order line table view
+	 */
+	public void updateOrderLineTableView(){
+		orderLineTableView.getItems().clear();
+		orderLineTableView.getItems().addAll(orderLineItems);
+	}
+	
+	
 	
 }
