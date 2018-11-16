@@ -1,14 +1,25 @@
 package application;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class OrderLine {
 	private String menuItem;
-	private int quantity;
-	private double computedPrice;
+	private SimpleIntegerProperty quantity;
+	private SimpleDoubleProperty computedPrice;
+	
+	private int orderInfoNumber;
+	private int menuItemNumber;
 	
 	public OrderLine(MenuItem menuItem){
 		this.menuItem = menuItem.getItemName();
-		quantity = 1;
-		computedPrice = menuItem.getPrice() * quantity;
+		quantity = new SimpleIntegerProperty(1);
+		computedPrice = new SimpleDoubleProperty();
+		//Binds computed price with quantity
+		computedPrice.bind(quantity.multiply(menuItem.getPrice()));
+		
+		
+		menuItemNumber = menuItem.getMenuItemNumber();
 	}
 
 	public String getMenuItem() {
@@ -20,23 +31,41 @@ public class OrderLine {
 	}
 
 	public int getQuantity() {
-		return quantity;
+		return quantity.get();
 	}
 
 	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+		this.quantity = new SimpleIntegerProperty(quantity);
 	}
 	
 	public void addQuantity(){
-		this.quantity++;
+		this.quantity.setValue(quantity.getValue() + 1);
 	}
 
 	public double getComputedPrice() {
-		return computedPrice;
+		return computedPrice.get();
 	}
 
 	public void setComputedPrice(double computedPrice) {
-		this.computedPrice = computedPrice;
+		this.computedPrice = new SimpleDoubleProperty(computedPrice);
 	}
+
+	public int getOrderInfoNumber() {
+		return orderInfoNumber;
+	}
+
+	public void setOrderInfoNumber(int orderInfoNumber) {
+		this.orderInfoNumber = orderInfoNumber;
+	}
+
+	public int getMenuItemNumber() {
+		return menuItemNumber;
+	}
+
+	public void setMenuItemNumber(int menuItemNumber) {
+		this.menuItemNumber = menuItemNumber;
+	}
+	
+	
 
 }
