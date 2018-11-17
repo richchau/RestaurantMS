@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -29,6 +31,10 @@ public class CreateOrderViewController implements Initializable{
 	private Connection connection;
 	private ObservableList<MenuItem> menuItems;
 	private ObservableList<OrderLine> orderLineItems;
+	
+	//Items to configure the customer items
+	@FXML private TextField firstNameTextField;
+	@FXML private TextField lastNameTextField;
 	
 	//Items to configure the table view of menu items
 	@FXML private TableView<MenuItem> menuItemTableView;
@@ -251,6 +257,70 @@ public class CreateOrderViewController implements Initializable{
 	 */
 	public void createNewOrder(){
 		
+		//Inserts into OrderLine table of DB
+		
+		for(OrderLine orderLine: orderLineItems){
+			orderLine.setOrderInfoNumber(Integer.parseInt(orderNumberTextField.getText()));
+			
+			try {
+				Statement myStatement = connection.createStatement();
+				
+				String sql = "INSERT INTO Orderline (Order_Info, Menu_Item, Quantity) VALUES (" 
+									+ orderLine.getOrderInfoNumber() +", " + orderLine.getMenuItemNumber() + ", " + orderLine.getQuantity() + ")";
+				
+				myStatement.executeUpdate(sql);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		System.out.println("Insertion to OrderLine Completed");
+		
+		//Inserts into Order_Info table of DB
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
+		
+		OrderInfo order = new OrderInfo(Integer.parseInt(orderNumberTextField.getText()), localDate, 
+				Double.parseDouble(tipAmountTextField.getText()), Double.parseDouble(balanceLabel.getText()), 
+				paymentTypeChoiceBox.getValue());
+		
+		try {
+			Statement myStatement = connection.createStatement();
+			String sql = "INSERT INTO Order_Info(Order_Number, Order_Date, Tip_Amount, Order_Total, Payment_Method) VALUES ("
+					+ order.getOrderNumber() + ", " + "'" + dtf.format(order.getDate()) + "'" + ", " + order.getTipAmount() + ", " + order.getOrderTotal()
+					+ ", " + "'" + order.getPaymentMethod() + "'" + ")";
+			
+			myStatement.executeUpdate(sql);
+			
+			System.out.println("Insertion to Order_Info Completed");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Inserts into Customer table of DB
+		try {
+			String firstName = firstNameTextField.getText();
+			String lastName = lastNameTextField.getText();
+			
+			Statement myStatement = connection.createStatement();
+			ResultSet myResultSet = myStatement.executeQuery("select * from Customer WHERE first_name = '" 
+					+ firstName + "' AND last_name = '"+ lastName +"'");
+			
+			if(!myResultSet.next()){
+				String sql = "insert into Customer(first_name, last_name) VALUES('" + firstName + "', '" + lastName + "')";
+				myStatement.executeUpdate(sql);
+				
+				System.out.println("Inserted new customer");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
