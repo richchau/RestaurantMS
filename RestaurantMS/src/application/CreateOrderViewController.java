@@ -253,69 +253,71 @@ public class CreateOrderViewController implements Initializable{
 	
 	
 	/**
-	 * This method creates a new order 
+	 * This method creates a new order w/ order line and new customer
 	 */
 	public void createNewOrder(){
 		
-		//Inserts into OrderLine table of DB
-		
-		for(OrderLine orderLine: orderLineItems){
-			orderLine.setOrderInfoNumber(Integer.parseInt(orderNumberTextField.getText()));
-			
-			try {
-				Statement myStatement = connection.createStatement();
-				
-				String sql = "INSERT INTO Orderline (Order_Info, Menu_Item, Quantity) VALUES (" 
-									+ orderLine.getOrderInfoNumber() +", " + orderLine.getMenuItemNumber() + ", " + orderLine.getQuantity() + ")";
-				
-				myStatement.executeUpdate(sql);
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-		
-		System.out.println("Insertion to OrderLine Completed");
-		
-		//Inserts into Order_Info table of DB
+		//Items for Order 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
+		String currentDate = dtf.format(localDate);
 		
-		OrderInfo order = new OrderInfo(Integer.parseInt(orderNumberTextField.getText()), localDate, 
-				Double.parseDouble(tipAmountTextField.getText()), Double.parseDouble(balanceLabel.getText()), 
-				paymentTypeChoiceBox.getValue());
+		Double tipAmount = Double.parseDouble(tipAmountTextField.getText());
+		Double balanceAmount = Double.parseDouble(balanceLabel.getText());
+		String paymentType = paymentTypeChoiceBox.getValue();
+		
 		
 		try {
 			Statement myStatement = connection.createStatement();
-			String sql = "INSERT INTO Order_Info(Order_Number, Order_Date, Tip_Amount, Order_Total, Payment_Method) VALUES ("
-					+ order.getOrderNumber() + ", " + "'" + dtf.format(order.getDate()) + "'" + ", " + order.getTipAmount() + ", " + order.getOrderTotal()
-					+ ", " + "'" + order.getPaymentMethod() + "'" + ")";
 			
-			myStatement.executeUpdate(sql);
+			//Gets the next order ID
+			ResultSet incrementOrderNumResultSet = myStatement.executeQuery("SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'Order_Info' AND table_schema = DATABASE( )");
+			incrementOrderNumResultSet.next();
+			int nextIncrementOrderNum = incrementOrderNumResultSet.getInt("AUTO_INCREMENT");
+			System.out.println("Next order id: " + nextIncrementOrderNum);
 			
+			
+			//Inserts order into order_info
+			String sqlInsertOrderInfo = "INSERT INTO Order_Info(Order_Date, Tip_Amount, Order_Total, Payment_Method) VALUES ( '"
+					+ currentDate + "'" + ", " + tipAmount + ", " + balanceAmount
+					+ ", " + "'" + paymentType + "'" + ")";
+			myStatement.executeUpdate(sqlInsertOrderInfo);
 			System.out.println("Insertion to Order_Info Completed");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//Inserts into Customer table of DB
-		try {
+			
+			
+			//Inserts order line items into order line
+			for(OrderLine orderLine: orderLineItems){
+				orderLine.setOrderInfoNumber(nextIncrementOrderNum);
+				
+				String sqlInsertOrderLine = "INSERT INTO Orderline (Order_Info, Menu_Item, Quantity) VALUES (" 
+						+ orderLine.getOrderInfoNumber() +", " + orderLine.getMenuItemNumber() + ", " + orderLine.getQuantity() + ")";
+	
+				myStatement.executeUpdate(sqlInsertOrderLine);
+				
+			}
+			System.out.println("Insertion to OrderLine Completed");
+			
+			
+			//Inserts customer (if new) into customer table
 			String firstName = firstNameTextField.getText();
 			String lastName = lastNameTextField.getText();
 			
-			Statement myStatement = connection.createStatement();
-			ResultSet myResultSet = myStatement.executeQuery("select * from Customer WHERE first_name = '" 
+			ResultSet incrementCustomerNumResultSet = myStatement.executeQuery("SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'Customer' AND table_schema = DATABASE( )");
+			incrementCustomerNumResultSet.next();
+			int nextIncrementCustomerNum = incrementCustomerNumResultSet.getInt("AUTO_INCREMENT");
+			
+			ResultSet customerResultSet = myStatement.executeQuery("select * from Customer WHERE first_name = '" 
 					+ firstName + "' AND last_name = '"+ lastName +"'");
 			
-			if(!myResultSet.next()){
+			if(!customerResultSet.next()){
 				String sql = "insert into Customer(first_name, last_name) VALUES('" + firstName + "', '" + lastName + "')";
 				myStatement.executeUpdate(sql);
 				
 				System.out.println("Inserted new customer");
 			}
+			
+			//Inserts information into Cust_orders
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
