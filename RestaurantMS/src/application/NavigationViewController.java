@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -17,6 +19,11 @@ public class NavigationViewController implements Initializable {
 	@FXML private BorderPane mainBorderPane;
 	@FXML private VBox sideVBox;
 	@FXML private VBox navigationVBox;
+	
+	@FXML private ToggleGroup navigationToggleGroup;
+	@FXML private ToggleButton dashboardToggleButton;
+	@FXML private ToggleButton ordersToggleButton;
+	@FXML private ToggleButton analyticsToggleButton;
 	
     @FXML
     private void handleShowView(ActionEvent e) {
@@ -40,7 +47,16 @@ public class NavigationViewController implements Initializable {
 		//Sets the default center pane to the Dashboard
 		loadFXML(getClass().getResource("DashboardView.fxml"));
 		
-		//vbox.setStyle("-fx-background-color: #00796B");
+		navigationToggleGroup = new ToggleGroup();
+		dashboardToggleButton.setToggleGroup(navigationToggleGroup);
+		ordersToggleButton.setToggleGroup(navigationToggleGroup);
+		analyticsToggleButton.setToggleGroup(navigationToggleGroup);
+		navigationToggleGroup.selectToggle(dashboardToggleButton);
+		
+		navigationToggleGroup.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
+		    if (newVal == null)
+		        oldVal.setSelected(true);
+		});
 		
 		
 	}
