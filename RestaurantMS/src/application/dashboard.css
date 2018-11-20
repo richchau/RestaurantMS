@@ -12,15 +12,13 @@
 	divider-color: #BDBDBD; 
 }
 
-.vbox{
-	-fx-background-color: dark-primary-color;
-}
-
-.hbox{
-	-fx-background-color: primary-text-color;
-}
-
 .button{
-	-fx-background-color: dark-primary-color;
+	-fx-background-color: #009688;
 	-fx-text-fill: text-primary-color;
+	-fx-background-radius: 10;
 }
+
+.label{
+	-fx-text-fill: secondary-text-color;
+}
+

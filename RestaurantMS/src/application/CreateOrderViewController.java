@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.sql.*;
@@ -12,8 +13,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -23,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class CreateOrderViewController implements Initializable{
 	
@@ -67,6 +74,9 @@ public class CreateOrderViewController implements Initializable{
 	
 	//Configures create order button
 	@FXML private Button createOrderButton;
+	
+	//Configures cancel button
+	@FXML private Button cancelButton;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -330,6 +340,21 @@ public class CreateOrderViewController implements Initializable{
 		}
 		
 		
+	}
+	
+	/**
+	 * This method handles returns user back to dash board
+	 */
+	public void cancelButtonPushed(ActionEvent event) throws IOException{
+		
+		Parent tableViewParent = FXMLLoader.load(getClass().getResource("NavigationView.fxml"));
+		Scene tableViewScene = new Scene(tableViewParent);
+		
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		
+		window.setScene(tableViewScene);
+		window.show();
+
 	}
 	
 }
