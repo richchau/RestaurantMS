@@ -35,6 +35,7 @@ public class CreateOrderViewController implements Initializable{
 	//Items to configure the customer items
 	@FXML private TextField firstNameTextField;
 	@FXML private TextField lastNameTextField;
+	@FXML private TextField tableNumberTextField;
 	
 	//Items to configure the table view of menu items
 	@FXML private TableView<MenuItem> menuItemTableView;
@@ -310,14 +311,18 @@ public class CreateOrderViewController implements Initializable{
 					+ firstName + "' AND last_name = '"+ lastName +"'");
 			
 			if(!customerResultSet.next()){
-				String sql = "insert into Customer(first_name, last_name) VALUES('" + firstName + "', '" + lastName + "')";
-				myStatement.executeUpdate(sql);
+				String sqlInsertCustomer = "insert into Customer(first_name, last_name) VALUES('" + firstName + "', '" + lastName + "')";
+				myStatement.executeUpdate(sqlInsertCustomer);
 				
 				System.out.println("Inserted new customer");
 			}
 			
 			//Inserts information into Cust_orders
+			int table = Integer.parseInt(tableNumberTextField.getText());
 			
+			String sqlInsertCustOrder = "insert into cust_orders(customer, seats, order_info) values (" + nextIncrementCustomerNum + ", " + table + ", " + nextIncrementOrderNum + ")";
+			myStatement.executeUpdate(sqlInsertCustOrder);
+			System.out.println("Insertion to Cust_Order Completed");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -20,12 +20,6 @@
          <children>
             <VBox prefHeight="415.0" prefWidth="574.0" spacing="10.0">
                <children>
-                  <HBox prefHeight="52.0" prefWidth="550.0">
-                     <children>
-                        <Label text="Order Number (Test):" />
-                        <TextField fx:id="orderNumberTextField" prefHeight="26.0" prefWidth="55.0" />
-                     </children>
-                  </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <Label text="Table#: ">
@@ -33,7 +27,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="26.0" prefWidth="57.0" />
+                        <TextField fx:id="tableNumberTextField" prefHeight="26.0" prefWidth="57.0" />
                         <Label text="Customer's Name:">
                            <font>
                               <Font name="System Bold" size="14.0" />
