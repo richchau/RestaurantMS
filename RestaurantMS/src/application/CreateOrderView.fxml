@@ -16,25 +16,35 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateOrderViewController">
    <children>
-      <HBox prefHeight="801.0" prefWidth="1201.0">
+      <HBox prefHeight="801.0" prefWidth="1201.0" spacing="20.0">
          <children>
-            <VBox prefHeight="802.0" prefWidth="619.0" spacing="10.0">
+            <VBox prefHeight="762.0" prefWidth="642.0" spacing="10.0" stylesheets="@createOrder.css">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-border-color: #BDBDBD;">
                      <children>
                         <Label text="Table#: ">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tableNumberTextField" prefHeight="26.0" prefWidth="57.0" />
+                        <TextField fx:id="tableNumberTextField" prefHeight="32.0" prefWidth="57.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <Region prefHeight="79.0" prefWidth="13.0" />
                         <Label text="Customer's Name:">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="firstNameTextField" prefHeight="26.0" prefWidth="126.0" promptText="First Name" />
-                        <TextField fx:id="lastNameTextField" prefHeight="26.0" prefWidth="131.0" promptText="Last_Name" />
+                        <TextField fx:id="firstNameTextField" prefHeight="32.0" prefWidth="126.0" promptText="First Name">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <TextField fx:id="lastNameTextField" prefHeight="32.0" prefWidth="131.0" promptText="Last_Name">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -47,17 +57,29 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                            <children>
-                              <ToggleButton fx:id="appetizersToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" text="Appetizers" />
-                              <ToggleButton fx:id="mainEntreesToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" text="Main Entrees" />
-                              <ToggleButton fx:id="dessertsToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" text="Desserts" />
-                              <ToggleButton fx:id="drinksToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" text="Drinks" />
+                              <ToggleButton fx:id="appetizersToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" prefWidth="150.0" text="Appetizers">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></ToggleButton>
+                              <ToggleButton fx:id="mainEntreesToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" prefWidth="150.0" text="Main Entrees">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></ToggleButton>
+                              <ToggleButton fx:id="dessertsToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" prefWidth="150.0" text="Desserts">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></ToggleButton>
+                              <ToggleButton fx:id="drinksToggleButton" mnemonicParsing="false" onAction="#toggleButtonChanged" prefWidth="150.0" text="Drinks">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></ToggleButton>
                            </children>
                         </HBox>
-                        <TableView fx:id="menuItemTableView" prefHeight="454.0" prefWidth="550.0">
+                        <TableView fx:id="menuItemTableView" prefHeight="548.0" prefWidth="622.0">
                           <columns>
-                            <TableColumn fx:id="menuItemNameColumn" prefWidth="261.0666809082031" text="Item Name" />
-                            <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="143.7332763671875" text="Price" />
-                              <TableColumn fx:id="actionColumn" prefWidth="75.0" text="Action" />
+                            <TableColumn fx:id="menuItemNameColumn" prefWidth="415.46669232845306" text="Item Name" />
+                            <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="101.33331298828125" text="Price" />
+                              <TableColumn fx:id="actionColumn" prefWidth="87.20001220703125" text="Action" />
                           </columns>
                         </TableView>
                      </children>
@@ -67,23 +89,23 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-            <Region prefHeight="802.0" prefWidth="56.0" />
-            <VBox prefHeight="802.0" prefWidth="565.0" spacing="10.0">
+            <Region prefHeight="762.0" prefWidth="3.0" style="-fx-background-color: #BDBDBD;" />
+            <VBox prefHeight="762.0" prefWidth="474.0" spacing="10.0">
                <children>
                   <Label text="Current Order">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <TableView fx:id="orderLineTableView" prefHeight="383.0" prefWidth="406.0">
                     <columns>
                         <TableColumn fx:id="orderLineActionColumn" prefWidth="75.0" text="Action" />
-                      <TableColumn fx:id="menuItemOrderLineNameColumn" prefWidth="172.00001180171967" text="Items" />
-                      <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="66.4000244140625" text="Quantity" />
-                        <TableColumn fx:id="computedPriceColumn" prefWidth="84.0" text="Price" />
+                      <TableColumn fx:id="menuItemOrderLineNameColumn" prefWidth="191.9998779296875" text="Items" />
+                      <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="73.86688232421875" text="Quantity" />
+                        <TableColumn fx:id="computedPriceColumn" prefWidth="106.9332275390625" text="Price" />
                     </columns>
                   </TableView>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <VBox prefHeight="100.0" prefWidth="228.0">
                            <children>
@@ -157,18 +179,27 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                      <children>
-                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonPushed" prefHeight="47.0" prefWidth="102.0" text="Cancel">
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonPushed" prefHeight="60.0" prefWidth="129.0" text="Cancel">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="createOrderButton" mnemonicParsing="false" onAction="#createNewOrder" prefHeight="47.0" prefWidth="130.0" text="Create Order">
+                        <Button fx:id="createOrderButton" mnemonicParsing="false" onAction="#createNewOrder" prefHeight="60.0" prefWidth="168.0" style="-fx-background-color: #009688; -fx-text-fill: #FFFFFF;" text="Create Order">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
+                  <VBox alignment="CENTER" prefHeight="70.0" prefWidth="454.0">
+                     <children>
+                        <Label fx:id="messageLabel" text="Label" textFill="#e51414">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

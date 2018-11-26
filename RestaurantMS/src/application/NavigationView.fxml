@@ -11,18 +11,33 @@
          <children>
             <VBox fx:id="navigationVBox" alignment="CENTER" prefHeight="800.0" prefWidth="250.0">
                <children>
-                  <ToggleButton fx:id="dashboardToggleButton" mnemonicParsing="false" onAction="#handleShowView" prefHeight="45.0" prefWidth="250.0" text="Dashboard" userData="DashboardView.fxml">
+                  <ToggleButton fx:id="dashboardToggleButton" mnemonicParsing="false" onAction="#handleShowView" prefHeight="50.0" prefWidth="250.0" text="Dashboard" userData="DashboardView.fxml">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font></ToggleButton>
-                  <ToggleButton fx:id="ordersToggleButton" mnemonicParsing="false" onAction="#handleShowView" prefHeight="45.0" prefWidth="250.0" text="Orders" userData="OrdersView.fxml">
+                  <ToggleButton fx:id="staffToggleButton" mnemonicParsing="false" onAction="#handleShowView" prefHeight="50.0" prefWidth="250.0" text="Staff" userData="StaffView.fxml">
                      <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font></ToggleButton>
-                  <ToggleButton fx:id="analyticsToggleButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="250.0" text="Analytics">
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </ToggleButton>
+                  <ToggleButton fx:id="ordersToggleButton" mnemonicParsing="false" onAction="#handleShowView" prefHeight="50.0" prefWidth="250.0" text="Orders" userData="OrdersView.fxml">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font></ToggleButton>
+                  <ToggleButton fx:id="analyticsToggleButton" mnemonicParsing="false" onAction="#handleShowView" prefHeight="50.0" prefWidth="250.0" text="Analytics" userData="AnalyticsView.fxml">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font></ToggleButton>
+                  <ToggleButton fx:id="menuToggleButton" mnemonicParsing="false" onAction="#handleShowView" prefHeight="50.0" prefWidth="250.0" text="Menu" userData="MenusView.fxml">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </ToggleButton>
+                  <ToggleButton fx:id="tablesToggleButton" mnemonicParsing="false" onAction="#handleShowView" prefHeight="50.0" prefWidth="250.0" text="Tables" userData="TablesView.fxml">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </ToggleButton>
                </children>
             </VBox>
          </children>

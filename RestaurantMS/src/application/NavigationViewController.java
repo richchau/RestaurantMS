@@ -24,6 +24,9 @@ public class NavigationViewController implements Initializable {
 	@FXML private ToggleButton dashboardToggleButton;
 	@FXML private ToggleButton ordersToggleButton;
 	@FXML private ToggleButton analyticsToggleButton;
+	@FXML private ToggleButton staffToggleButton;
+	@FXML private ToggleButton menuToggleButton;
+	@FXML private ToggleButton tablesToggleButton;
 	
     @FXML
     private void handleShowView(ActionEvent e) {
@@ -51,7 +54,11 @@ public class NavigationViewController implements Initializable {
 		dashboardToggleButton.setToggleGroup(navigationToggleGroup);
 		ordersToggleButton.setToggleGroup(navigationToggleGroup);
 		analyticsToggleButton.setToggleGroup(navigationToggleGroup);
+		staffToggleButton.setToggleGroup(navigationToggleGroup);
+		tablesToggleButton.setToggleGroup(navigationToggleGroup);
+		menuToggleButton.setToggleGroup(navigationToggleGroup);
 		navigationToggleGroup.selectToggle(dashboardToggleButton);
+		
 		
 		navigationToggleGroup.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
 		    if (newVal == null)

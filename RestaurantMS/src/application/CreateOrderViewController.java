@@ -78,6 +78,9 @@ public class CreateOrderViewController implements Initializable{
 	//Configures cancel button
 	@FXML private Button cancelButton;
 	
+	//Configures the warning message label
+	@FXML private Label messageLabel;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -149,6 +152,36 @@ public class CreateOrderViewController implements Initializable{
 		
 		taxLabel.setText("0.00");
 		balanceLabel.setText("0.00");
+		
+		
+		//Initializes table number field and customer field
+		tableNumberTextField.textProperty().addListener(new ChangeListener<String>() {
+			
+			@Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+		        String newValue) {
+		        if (!newValue.matches("\\d*")) {
+		            tableNumberTextField.setText(newValue.replaceAll("[^\\d]", ""));
+		        }
+		    }
+		    
+		});
+		
+		firstNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+		    if (!newValue.matches("\\sa-zA-Z*")) {
+		            firstNameTextField.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+		    }
+		});	
+		
+		lastNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+		    if (!newValue.matches("\\sa-zA-Z*")) {
+		        lastNameTextField.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+		    }
+		});
+		
+		
+		//Initializes error message label
+		messageLabel.setText("");
 		
 		
 		//Initialize database connection
@@ -268,12 +301,21 @@ public class CreateOrderViewController implements Initializable{
 	 */
 	public void createNewOrder(){
 		
+		if (!checkFields()){
+			return;
+		}
+		
 		//Items for Order 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
 		String currentDate = dtf.format(localDate);
 		
-		Double tipAmount = Double.parseDouble(tipAmountTextField.getText());
+		Double tipAmount;
+		if (tipAmountTextField.getText().isEmpty()){
+			tipAmount = Double.parseDouble("0");
+		}else{
+			tipAmount = Double.parseDouble(tipAmountTextField.getText());
+		}
 		Double balanceAmount = Double.parseDouble(balanceLabel.getText());
 		String paymentType = paymentTypeChoiceBox.getValue();
 		
@@ -340,6 +382,10 @@ public class CreateOrderViewController implements Initializable{
 		}
 		
 		
+		clearFields();
+		AlertBox.display("Order successfully created");
+		
+		
 	}
 	
 	/**
@@ -355,6 +401,98 @@ public class CreateOrderViewController implements Initializable{
 		window.setScene(tableViewScene);
 		window.show();
 
+	}
+	
+	/**
+	 * This method clears all fields 
+	 */
+	public void clearFields(){
+		tableNumberTextField.clear();
+		firstNameTextField.clear();
+		lastNameTextField.clear();
+		tipAmountTextField.clear();
+		
+		orderLineItems.clear();
+		orderLineTableView.getItems().clear();
+	}
+	
+	/**
+	 * This method makes sure all fields are filled
+	 */
+	public boolean checkFields(){
+		
+		if (!validateTableNumber()){
+			return false;
+		}
+		
+		if (!validateCustomerName()){
+			return false;
+		}
+		
+		if (!validateOrderItemsList()){
+			return false;
+		}
+		
+		System.out.println("All fields valid");
+		return true;
+	}
+	
+	/**
+	 * This method validates the table number input
+	 * @throws SQLException 
+	 */
+	public boolean validateTableNumber(){
+		if (tableNumberTextField.getText().isEmpty()){
+			messageLabel.setText("Insert a table number");
+			return false;
+		}
+		
+		int tableNum = Integer.parseInt(tableNumberTextField.getText());
+		
+		Statement myStatement;
+		try {
+			myStatement = connection.createStatement();
+			ResultSet mResultSet = myStatement.executeQuery("select * from seats where table_number =" + tableNum);
+			if(!mResultSet.next()){
+				messageLabel.setText("Table number does not exist");
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		messageLabel.setText("");
+		System.out.println("Valid Table Number");
+		return true;
+	}
+	
+	/**
+	 * This method validates the customer's name inputs
+	 */
+	public boolean validateCustomerName(){
+		if (firstNameTextField.getText().isEmpty()){
+			messageLabel.setText("Insert a first name for customer");
+			return false;
+		}
+		
+		if (lastNameTextField.getText().isEmpty()){
+			messageLabel.setText("Insert a first name for customer");
+			return false;
+		}
+		
+		messageLabel.setText("");
+		System.out.println("Valid Customer Name");
+		return true;
+	}
+	
+	public boolean validateOrderItemsList(){
+		if (orderLineItems.isEmpty()){
+			messageLabel.setText("Current order is empty");
+			return false;
+		}
+		messageLabel.setText("");
+		System.out.println("Valid order item list");
+		return true;
 	}
 	
 }
