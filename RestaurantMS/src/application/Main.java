@@ -14,8 +14,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		Parent root;
 		try {
-			root = FXMLLoader.load(getClass().getResource("CreateOrderView.fxml"));
-			//root = FXMLLoader.load(getClass().getResource("NavigationView.fxml"));
+			//root = FXMLLoader.load(getClass().getResource("CreateOrderView.fxml"));
+			root = FXMLLoader.load(getClass().getResource("NavigationView.fxml"));
 			
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);

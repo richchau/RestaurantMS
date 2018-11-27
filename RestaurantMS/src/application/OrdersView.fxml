@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="950.0" stylesheets="@ordersView.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OrdersViewController">
    <children>
-      <Label layoutX="378.0" layoutY="374.0" text="Orders View" textFill="#757575">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
+      <VBox prefHeight="801.0" prefWidth="950.0" spacing="20.0">
+         <children>
+            <Label text="Order History">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
+            <TableView prefHeight="647.0" prefWidth="950.0">
+              <columns>
+                <TableColumn prefWidth="165.0666927099228" text="Order Number" />
+                <TableColumn minWidth="2.6667098999023438" prefWidth="107.46661376953125" text="Table #" />
+                  <TableColumn prefWidth="161.066650390625" text="Date" />
+                  <TableColumn prefWidth="174.933349609375" text="Handler" />
+                  <TableColumn prefWidth="142.66668701171875" text="Total Paid" />
+                  <TableColumn prefWidth="135.7333984375" text="Action" />
+              </columns>
+            </TableView>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </VBox>
    </children>
 </Pane>
