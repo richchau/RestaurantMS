@@ -359,20 +359,29 @@ public class CreateOrderViewController implements Initializable{
 			incrementCustomerNumResultSet.next();
 			int nextIncrementCustomerNum = incrementCustomerNumResultSet.getInt("AUTO_INCREMENT");
 			
+			ResultSet currentCustomerNumResultSet = myStatement.executeQuery("SELECT max(customer_id) from customer;");
+			currentCustomerNumResultSet.next();
+			int currentIncrementCustomerNum = currentCustomerNumResultSet.getInt("max(customer_id)");
+			
 			ResultSet customerResultSet = myStatement.executeQuery("select * from Customer WHERE first_name = '" 
 					+ firstName + "' AND last_name = '"+ lastName +"'");
 			
+			Boolean newCust = false;
 			if(!customerResultSet.next()){
 				String sqlInsertCustomer = "insert into Customer(first_name, last_name) VALUES('" + firstName + "', '" + lastName + "')";
 				myStatement.executeUpdate(sqlInsertCustomer);
-				
+				newCust = true;
 				System.out.println("Inserted new customer");
 			}
 			
 			//Inserts information into Cust_orders
 			int table = Integer.parseInt(tableNumberTextField.getText());
-			
-			String sqlInsertCustOrder = "insert into cust_orders(customer, seats, order_info) values (" + nextIncrementCustomerNum + ", " + table + ", " + nextIncrementOrderNum + ")";
+			String sqlInsertCustOrder;
+			if(newCust){
+				sqlInsertCustOrder = "insert into cust_orders(customer, seats, order_info) values (" + nextIncrementCustomerNum + ", " + table + ", " + nextIncrementOrderNum + ")";
+			}else{
+				sqlInsertCustOrder = "insert into cust_orders(customer, seats, order_info) values (" + currentIncrementCustomerNum + ", " + table + ", " + nextIncrementOrderNum + ")";
+			}
 			myStatement.executeUpdate(sqlInsertCustOrder);
 			System.out.println("Insertion to Cust_Order Completed");
 			

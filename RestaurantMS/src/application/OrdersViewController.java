@@ -33,6 +33,8 @@ public class OrdersViewController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		orderHistoryTableView.refresh();
+		
 		//Initialize columns in order history table view
 		orderNumberColumn.setCellValueFactory(new PropertyValueFactory<DetailedOrderInfo, Integer>("orderNumber"));
 		tableNumberColumn.setCellValueFactory(new PropertyValueFactory<DetailedOrderInfo, Integer>("tableNumber"));
@@ -58,6 +60,9 @@ public class OrdersViewController implements Initializable {
 		
 	}
 	
+	/**
+	 * This method gets data from DB and populates the order history table view 
+	 */
 	public void getOrderHistoryData(){
 		orderHistoryItems = FXCollections.observableArrayList();
 		
