@@ -17,14 +17,14 @@
                   <Font size="34.0" />
                </font>
             </Label>
-            <TableView prefHeight="647.0" prefWidth="950.0">
+            <TableView fx:id="orderHistoryTableView" prefHeight="647.0" prefWidth="950.0">
               <columns>
-                <TableColumn prefWidth="165.0666927099228" text="Order Number" />
-                <TableColumn minWidth="2.6667098999023438" prefWidth="107.46661376953125" text="Table #" />
-                  <TableColumn prefWidth="161.066650390625" text="Date" />
-                  <TableColumn prefWidth="174.933349609375" text="Handler" />
-                  <TableColumn prefWidth="142.66668701171875" text="Total Paid" />
-                  <TableColumn prefWidth="135.7333984375" text="Action" />
+                <TableColumn fx:id="orderNumberColumn" prefWidth="165.0666927099228" text="Order Number" />
+                <TableColumn fx:id="tableNumberColumn" minWidth="2.6667098999023438" prefWidth="107.46661376953125" text="Table #" />
+                  <TableColumn fx:id="dateColumn" prefWidth="161.066650390625" text="Date" />
+                  <TableColumn fx:id="handlerColumn" prefWidth="174.933349609375" text="Handler" />
+                  <TableColumn fx:id="totalPaidColumn" prefWidth="142.66668701171875" text="Total Paid" />
+                  <TableColumn fx:id="actionColumn" prefWidth="135.7333984375" text="Action" />
               </columns>
             </TableView>
          </children>

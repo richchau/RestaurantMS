@@ -1,7 +1,6 @@
 package application;
 
-import java.time.LocalDate;
-
+import java.sql.Date;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -13,11 +12,15 @@ public class DetailedOrderInfo {
 	private StringProperty customerFirstName, customerLastName, payment_method;
 	private IntegerProperty tableNumber, orderNumber;
 	private DoubleProperty tipAmount, orderTotal;
-	private LocalDate orderDate;
+	private Date orderDate;
+	
+	public DetailedOrderInfo(){
+		
+	}
 	
 	public DetailedOrderInfo(String customerFirstName, String customerLastName,
 			String payment_method, int tableNumber, int orderNumber,
-			double tipAmount, double orderTotal, LocalDate orderDate) {
+			double tipAmount, double orderTotal, Date orderDate) {
 		super();
 		this.customerFirstName = new SimpleStringProperty(customerFirstName);
 		this.customerLastName = new SimpleStringProperty(customerLastName);
@@ -85,15 +88,13 @@ public class DetailedOrderInfo {
 		this.orderTotal = new SimpleDoubleProperty(orderTotal);
 	}
 
-	public LocalDate getOrderDate() {
+	public Date getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(LocalDate orderDate) {
-		this.orderDate = orderDate;
+	public void setOrderDate(Date date) {
+		this.orderDate = date;
 	}
-	
-	
 	
 	
 }
