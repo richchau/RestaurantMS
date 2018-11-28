@@ -16,3 +16,8 @@
 	-fx-background-color: default-primary-color;
 	-fx-text-fill: text-primary-color;
 }
+
+.root{
+	-fx-border-color: default-primary-color;
+	-fx-border-width: 7;
+}

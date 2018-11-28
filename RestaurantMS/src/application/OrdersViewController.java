@@ -13,11 +13,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -38,6 +40,8 @@ public class OrdersViewController implements Initializable {
 	@FXML private TableColumn<DetailedOrderInfo, String> handlerColumn;
 	@FXML private TableColumn<DetailedOrderInfo, Double> totalPaidColumn;
 	@FXML private TableColumn<DetailedOrderInfo, Button> actionColumn;
+	
+	@FXML private Pane pane;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -119,16 +123,11 @@ public class OrdersViewController implements Initializable {
 			OrderDetailPopUpViewController controller = loader.<OrderDetailPopUpViewController>getController();
 			controller.initData(info);
 			
-			
-			
 			popUpStage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//Scene scene = new Scene(root);
-
 		
 	}
 }
