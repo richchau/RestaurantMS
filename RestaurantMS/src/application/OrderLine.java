@@ -11,6 +11,10 @@ public class OrderLine {
 	private int orderInfoNumber;
 	private int menuItemNumber;
 	
+	public OrderLine(){
+		
+	}
+	
 	public OrderLine(MenuItem menuItem){
 		this.menuItem = menuItem.getItemName();
 		quantity = new SimpleIntegerProperty(1);
