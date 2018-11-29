@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,6 +24,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -123,7 +125,19 @@ public class OrdersViewController implements Initializable {
 			OrderDetailPopUpViewController controller = loader.<OrderDetailPopUpViewController>getController();
 			controller.initData(info);
 			
-			popUpStage.show();
+			//Centers the pop up over the current stage
+			double x = pane.getScene().getWindow().getX() + pane.getScene().getWindow().getWidth()/2d;
+			double y = pane.getScene().getWindow().getY() + pane.getScene().getWindow().getHeight()/2d;
+			
+			popUpStage.setOnShown(ev -> {
+                popUpStage.setX(x - popUpStage.getWidth()/2d);
+                popUpStage.setY(y - popUpStage.getHeight()/2d);
+                popUpStage.show();
+            });
+			
+			popUpStage.showAndWait();
+			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
