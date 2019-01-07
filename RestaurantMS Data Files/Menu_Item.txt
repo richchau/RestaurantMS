@@ -1,0 +1,41 @@
+100	Loaded Nachos	Appetizer	13.50	0	0	"Tortilla Chips, Cheese, Guac, Salsa, Chicken, Jalapenos"
+101	Mozzarella Sticks	Appetizer	11.50	0	0	"Cheese, Marinara"
+102	Sliders	Appetizer	12.25	0	0	"Beef patties, Buns, Onion, Lettuce, Pickles, Ketchup"
+103	Calamari	Appetizer	13.95	0	0	Calamari
+104	Guacamole and Chips	Appetizer	7.50	0	0	"Tortilla Chips, Guac"
+105	Salad	Appetizer	6.95	0	1	"Greens, Mushroom, Goat Cheese, Cranberries"
+106	Fries	Appetizer	5.75	0	0	Potatoes
+200	Parmesan-Crusted Chicken	Main Entree	18.95	0	0	"Chicken breasts, butter sauce, cheese, potatoes"
+201	New Orleans Jambalaya	Main Entree	20.25	0	0	"Chicken breasts, chrimp, sausage, bell pepers, onion, broth"
+202	Chicken Quinoa Bowl	Main Entree	15.75	0	1	"Quinoa, onions, mushroom, chicken, tomatoes"
+203	Lemon Thyme Chicken	Main Entree	16.25	0	1	"Chicken breasts, rice, bell peppers, tomatoes, onion"
+204	Rib-eye	Main Entree	26.50	0	0	"Rib-eye, potatoes, asparagus"
+205	Top Sirloin	Main Entree	19.50	0	0	"Sirloin, potatoes, asparagus"
+206	BBQ Bison Burger	Main Entree	14.50	0	0	"Beef patty, bun, fries, tomato, lettuce, onion"
+207	Turkey Burger	Main Entree	12.50	0	0	"Turkey patty, bun, fries, tomato, lettuce, onion"
+208	Shrimp Tacos	Main Entree	13.95	0	0	"Shrimp, pita, cheese, cilantro, tomatoes"
+209	Salmon	Main Entree	17.95	0	1	"Salmon, asparagus, tomatoes"
+210	Baby Back Pork Ribs	Main Entree	25.50	0	0	"Ribs, fries"
+211	Bacon Cheeseburger	Main Entree	14.50	0	0	"Beef patty, bacon, bun, tomatoes, lettuce, fries"
+212	Fish n Chips	Main Entree	17.50	0	0	"Fish, chips"
+213	Chicken Club Sandwich 	Main Entree	11.95	0	0	"Bread, chicken, lettuce, tomato"
+214	Meatball Sub	Main Entree	10.50	0	0	"Meatballs, bread, sauce, cheese, fries"
+215	Spahghetti and Meatballs	Main Entree	17.75	0	0	"Pasta, meatball, sauce"
+216	Shrimp Scampi	Main Entree	19.75	0	0	"Shrimp, pasta, butter sauce, tomatoes, cheese"
+217	Chicken Alfredo	Main Entree	18.25	0	0	"Pasta, chicken, sauce, cheese "
+300	Chocolate Chip Pizookie	Dessert	3.00	1	1	"Cookie, ice cream"
+301	Lemon Cake	Dessert	3.00	0	0	Lemon
+302	Peanut Butter Pizookie 	Dessert	3.00	1	0	"Peanut butter, ice cream"
+303	Root Beer Float	Dessert	3.00	0	1	"Root Beer, ice cream"
+304	Ice cream 	Dessert	3.50	0	1	Ice cream
+305	Cheesecake	Dessert	4.50	0	0	"Cream cheese, graham crackers "
+306	Gelato	Dessert	4.50	0	1	"Cream, milk, eggs"
+307	Banana Crepes	Dessert	5.50	0	0	"Banana, crepes "
+218	Brussel Sprouts Salad	Main Entree	12.75	0	1	"Kale, brussel sproats, cheese, grape, onion"
+219	Barbacoa Chicken	Main Entree	15.50	0	1	"Rice, bean, chicken, cheese, crema, salsa"
+400	Cola	Drink	2.50	0	0	Null
+401	Diet Cola	Drink	2.50	0	0	Null
+402	Coffee	Drink	1.50	0	0	Caffine or Decaf
+403	Water	Drink	0.00	0	0	Null
+404	Juice	Drink	1.50	0	0	Apple or Orange 
+405	Pina Colada	Drink	15.00	0	0	"rum, coconut cream, pineapple juice"

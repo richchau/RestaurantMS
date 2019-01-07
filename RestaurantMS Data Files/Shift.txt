@@ -1,0 +1,7 @@
+1	Mon-Th	Noon
+2	Mon-Th	Night
+3	Fr-Sun	Noon
+4	Fr-Sun	Night
+5	Mon-Sun	All-Day
+6	Mon-Th	All-Day
+7	Fr-Sun	All-Day

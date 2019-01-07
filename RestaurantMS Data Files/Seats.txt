@@ -1,0 +1,15 @@
+1	By Bar	2
+2	By Bar	2
+3	By Bar	2
+4	By Bar	2
+5	Regular Seating	4
+6	Regular Seating	4
+7	Regular Seating	4
+8	Regular Seating	4
+9	Regular Seating	4
+10	Regular Seating	6
+11	Regular Seating	6
+12	Regular Seating	6
+13	Regular Seating	6
+14	Booth	8
+15	Booth	8

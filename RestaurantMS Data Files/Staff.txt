@@ -1,0 +1,10 @@
+20	Waiter	Jeanna 	August	Female	2557 Snell Ave. 	San Jose	CA	 95181	408-678-3547	15.00	2018-01-27	0	0
+21	Waiter	Linda	Toyota	Female	2551 Cruz Ave.	San Jose	CA	 95181	408-956-7149	15.00	2018-01-27	0	0
+22	Waiter	Tom	Lansang	Male	2552 Santa Ave.	San Jose	CA	95136	408-477-9086	15.00	2018-04-03	0	0
+23	Waiter	Judy 	Plaskett	Female	2553 Cruz Ave. 	San Jose	CA	 95181	408-988-4783	15.00	2018-04-07	0	0
+30	Chef	Stephen	Curry	Male	2554 Virginia Ave.	San Jose	CA	 95181	408-200-8268	30.00	2018-01-27	Master Chef	0
+31	Chef	Fredo	McGray	Male	2578 First St. 	San Jose	CA	 95182	408-371-9168	25.00	2018-01-27	Second Chef	0
+32	Chef	Sonny	Mcfee	Male	2599 Parson Ct. 	San Jose	CA	 95181	408-923-7543	22.00	2018-05-06	Line Chef	0
+33	Chef	Lida 	Pooja	Female	2588 San Fernando. 	San Jose	CA	 95182	408-861-3705	22.00	2018-07-20	Line Chef	0
+40	Manager	Mathias	Silva	Male	2585 Cruz Ave. 	San Jose	CA	95136	408-266-5756	35.00	2018-01-27	0	350.00
+41	Manager	Valeria	Patterson	Female	2581 San Fernando.	San Jose	CA	 95182	408-868-9015	35.00	2018-01-27	0	275.00
